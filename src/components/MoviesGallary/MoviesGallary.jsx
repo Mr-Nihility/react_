@@ -4,7 +4,7 @@ import { MoviesGallaryItem } from './MoviesGallaryItem/MoviesGallaryItem';
 export const MoviesGallary = ({ films, onDelete }) => {
   return (
     <ul>
-      {films.map(({ id, title, vote_count }) => {
+      {films.map(({ id, title, vote_count, poster_path }) => {
         return (
           <MoviesGallaryItem
             key={id}
@@ -12,6 +12,7 @@ export const MoviesGallary = ({ films, onDelete }) => {
             rate={vote_count}
             onDelete={onDelete}
             id={id}
+            image={poster_path}
           />
         );
       })}
