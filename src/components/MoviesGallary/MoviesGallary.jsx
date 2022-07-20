@@ -8,7 +8,7 @@ export const MoviesGallary = ({ films, onDelete }) => {
         return (
           <MoviesGallaryItem
             key={id}
-            name={title}
+            title={title}
             rate={vote_count}
             onDelete={onDelete}
             id={id}
