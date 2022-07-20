@@ -1,16 +1,15 @@
+import Section from './section/Section';
+import { FeaturesGallary } from './featuresGallary/FeaturesGallary';
+import data from './data/features.json';
+//-------------------------------------------------------///
+console.log(data);
 export const App = () => {
+  const a = 'Some title';
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <Section title={a}>
+        <FeaturesGallary features={data}></FeaturesGallary>
+      </Section>
+    </>
   );
 };
