@@ -1,18 +1,20 @@
 import PropTypes from 'prop-types';
 import { MoviesGallaryItem } from './MoviesGallaryItem/MoviesGallaryItem';
 //--------------------------------
-export const MoviesGallary = ({ films, onDelete }) => {
+export const MoviesGallary = ({ films, onDelete, onToggleStatus }) => {
   return (
     <ul>
-      {films.map(({ id, title, vote_count, poster_path }) => {
+      {films.map(({ id, title, vote_count, poster_path, watched }) => {
         return (
           <MoviesGallaryItem
+          onToggleStatus={onToggleStatus}
             key={id}
             title={title}
             rate={vote_count}
             onDelete={onDelete}
             id={id}
             image={poster_path}
+            watched={watched}
           />
         );
       })}

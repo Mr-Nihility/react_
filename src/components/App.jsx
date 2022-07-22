@@ -1,5 +1,6 @@
 // import Section from './section/Section';
 // import { FeaturesGallary } from './featuresGallary/FeaturesGallary';
+import { mapper } from 'utils/mapper';
 import { Component } from 'react';
 import { Button } from './Button/Button';
 import { MoviesGallary } from './MoviesGallary/MoviesGallary';
@@ -10,7 +11,7 @@ import movies from '../data/data.json';
 
 class App extends Component {
   state = {
-    films: movies,
+    films: mapper(movies),
     isShown: false,
   };
 
@@ -20,6 +21,22 @@ class App extends Component {
   onDelete = id => {
     this.setState(prevState => ({
       films: prevState.films.filter(item => item.id !== id),
+    }));
+  };
+
+  onToggleStatus = filmId => {
+    
+    this.setState(prev => ({
+      
+      films: prev.films.map(item => {
+        
+        if (item.id === filmId) {
+          
+          return {...item, watched: !item.watched}
+          
+        }
+        return item
+      }),
     }));
   };
 
@@ -34,7 +51,13 @@ class App extends Component {
           />
         )}
 
-        {isShown && <MoviesGallary films={films} onDelete={this.onDelete} />}
+        {isShown && (
+          <MoviesGallary
+            onToggleStatus={this.onToggleStatus}
+            films={films}
+            onDelete={this.onDelete}
+          />
+        )}
       </div>
     );
   }

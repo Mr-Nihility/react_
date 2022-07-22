@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 //---------------------------------------------------//
 
-export const MoviesGallaryItem = ({ id, image, title, rate, onDelete }) => {
+export const MoviesGallaryItem = ({ id, image, title, rate, onDelete, watched, onToggleStatus  }) => {
   return (
     <li>
       <img
@@ -11,6 +11,7 @@ export const MoviesGallaryItem = ({ id, image, title, rate, onDelete }) => {
       />
       <h2>{title}</h2>
       <p>Votes: {rate}</p>
+      <p>Watched: <span onClick={()=>onToggleStatus(id)}>{String(watched)}</span></p>
       <button type="button" onClick={() => onDelete(id)}>
         Delete
       </button>
