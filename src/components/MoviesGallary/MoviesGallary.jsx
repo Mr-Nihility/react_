@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { MoviesGallaryItem } from './MoviesGallaryItem/MoviesGallaryItem';
+import { MoviesGallaryStyles } from './MoviesGallary.styles';
 //--------------------------------
 export const MoviesGallary = ({ films, onDelete, onToggleStatus }) => {
   return (
-    <ul>
+    <MoviesGallaryStyles>
       {films.map(({ id, title, vote_count, poster_path, watched }) => {
         return (
           <MoviesGallaryItem
-          onToggleStatus={onToggleStatus}
+            onToggleStatus={onToggleStatus}
             key={id}
             title={title}
             rate={vote_count}
@@ -18,7 +19,7 @@ export const MoviesGallary = ({ films, onDelete, onToggleStatus }) => {
           />
         );
       })}
-    </ul>
+    </MoviesGallaryStyles>
   );
 };
 
