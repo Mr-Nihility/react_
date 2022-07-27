@@ -1,7 +1,7 @@
 // import Section from './section/Section';
 // import { FeaturesGallary } from './featuresGallary/FeaturesGallary';
 import { mapper } from 'utils/mapper';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Button } from './Button/Button';
 import { MoviesGallary } from './MoviesGallary/MoviesGallary';
 import { Modal } from './Modal/Modal';
@@ -17,6 +17,7 @@ const App = () => {
   const [image, setImage] = useState('');
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const isFirstLoad = useRef(true);
 
   useEffect(() => {
     service(page)
