@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { MoviesGallaryItem } from './MoviesGallaryItem/MoviesGallaryItem';
 import { MoviesGallaryStyles } from './MoviesGallary.styles';
 //--------------------------------
-export const MoviesGallary = ({ films, onDelete, onToggleStatus }) => {
+export const MoviesGallary = ({ films, onDelete, onToggleStatus,handleOpenModal }) => {
   return (
     <MoviesGallaryStyles>
       {films.map(({ id, title, vote_count, poster_path, watched }) => {
@@ -16,6 +16,7 @@ export const MoviesGallary = ({ films, onDelete, onToggleStatus }) => {
             id={id}
             image={poster_path}
             watched={watched}
+            handleOpenModal={handleOpenModal}
           />
         );
       })}

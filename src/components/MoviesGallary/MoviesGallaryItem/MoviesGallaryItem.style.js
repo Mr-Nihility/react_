@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const MovieItem = styled.li`
   width: 350px;
-  background: rgba(75, 22, 233, 0.34);
+  background: rgba(51, 37, 37, 0.34);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
