@@ -13,13 +13,20 @@ import { Loader } from './Loader/Loader';
 
 const App = () => {
   const [films, setFilms] = useState([]);
-  // const [isShown, setIsShown] = useState(false);
+
   const [image, setImage] = useState('');
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const isFirstLoad = useRef(true);
 
   useEffect(() => {
+    console.log('123');
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return;
+    }
+
+    setLoading(true);
     service(page)
       .then(({ data }) => {
         setFilms(prev => [...prev, ...mapper(data.results)]);
@@ -27,19 +34,19 @@ const App = () => {
       .finally(() => setLoading(false));
   }, [page]);
 
-  const handlerClick = () => {
-    // setIsShown(true);
-    fetchMovies();
-  };
+  // const handlerClick = () => {
+  //   setIsShown(true);
+  //   // fetchMovies();
+  // };
 
-  const fetchMovies = () => {
-    setLoading(true);
-    service(page)
-      .then(({ data }) => {
-        setFilms(prev => [...prev, ...mapper(data.results)]);
-      })
-      .finally(() => setLoading(false));
-  };
+  // const fetchMovies = () => {
+  //   setLoading(true);
+  //   service(page)
+  //     .then(({ data }) => {
+  //       setFilms(prev => [...prev, ...mapper(data.results)]);
+  //     })
+  //     .finally(() => setLoading(false));
+  // };
 
   const handleOpenModal = img => {
     setImage(img);
@@ -68,11 +75,6 @@ const App = () => {
 
   return (
     <div>
-      {/* {!isShown && (
-        <Button textContent="Show something" handlerClick={handlerClick} />
-      )} */}
-
-      {/* {isShown && ( */}
       <>
         <MoviesGallary
           handleOpenModal={handleOpenModal}
@@ -80,14 +82,98 @@ const App = () => {
           films={films}
           onDelete={onDelete}
         />
-        {/* {loading && <Loader />} */}
+        {loading && <Loader />}
         <Button textContent="Load More" handlerClick={handlerLoadMore} />
       </>
-      {/* )} */}
+
       {image && <Modal image={image} close={handleCloseModal} />}
     </div>
   );
 };
+
+// const App = () => {
+//   const [films, setFilms] = useState([]);
+//   const [isShown, setIsShown] = useState(false);
+//   const [image, setImage] = useState('');
+//   const [page, setPage] = useState(1);
+//   const [loading, setLoading] = useState(false);
+//   // const isFirstLoad = useRef(true);
+
+//   useEffect(() => {
+//     console.log('123');
+//     if (!isShown) {
+//       return;
+//     }
+
+//     setLoading(true);
+//     service(page)
+//       .then(({ data }) => {
+//         setFilms(prev => [...prev, ...mapper(data.results)]);
+//       })
+//       .finally(() => setLoading(false));
+//   }, [page, isShown]);
+
+//   const handlerClick = () => {
+//     setIsShown(true);
+//     // fetchMovies();
+//   };
+
+//   // const fetchMovies = () => {
+//   //   setLoading(true);
+//   //   service(page)
+//   //     .then(({ data }) => {
+//   //       setFilms(prev => [...prev, ...mapper(data.results)]);
+//   //     })
+//   //     .finally(() => setLoading(false));
+//   // };
+
+//   const handleOpenModal = img => {
+//     setImage(img);
+//   };
+//   const handleCloseModal = () => {
+//     setImage('');
+//   };
+
+//   const onToggleStatus = filmId => {
+//     setFilms(prev =>
+//       prev.map(item => {
+//         if (item.id === filmId) {
+//           return { ...item, watched: !item.watched };
+//         }
+//         return item;
+//       })
+//     );
+//   };
+
+//   const onDelete = id => {
+//     setFilms(prev => prev.filter(item => item.id !== id));
+//   };
+//   const handlerLoadMore = () => {
+//     setPage(ps => ps + 1);
+//   };
+
+//   return (
+//     <div>
+//       {!isShown && (
+//         <Button textContent="Show something" handlerClick={handlerClick} />
+//       )}
+
+//       {isShown && (
+//         <>
+//           <MoviesGallary
+//             handleOpenModal={handleOpenModal}
+//             onToggleStatus={onToggleStatus}
+//             films={films}
+//             onDelete={onDelete}
+//           />
+//           {loading && <Loader />}
+//           <Button textContent="Load More" handlerClick={handlerLoadMore} />
+//         </>
+//       )}
+//       {image && <Modal image={image} close={handleCloseModal} />}
+//     </div>
+//   );
+// };
 
 // class App extends Component {
 //   state = {
