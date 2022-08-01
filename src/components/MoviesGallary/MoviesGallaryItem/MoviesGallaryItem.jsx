@@ -19,11 +19,11 @@ export const MoviesGallaryItem = ({
 }) => {
   return (
     <MovieItem>
-      {/* <img
+      <img
         src={`https://image.tmdb.org/t/p/w500${image}`}
         width="350"
         alt={title}
-      /> */}
+      />
       <Wrapper>
         <h2>{title}</h2>
         <p>Votes: {rate}</p>
@@ -36,7 +36,7 @@ export const MoviesGallaryItem = ({
         <MovieButton type="button" onClick={() => onDelete(id)}>
           Delete
         </MovieButton>
-        <button type='button' onClick={()=> handleOpenModal(image)}>Show poster</button>
+        <button type='button' onClick={()=> handleOpenModal(id)}>Show details</button>
       </Wrapper>
     </MovieItem>
   );

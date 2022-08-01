@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const Text = styled.p`
+color: white;
+font-size: 25px;
+`
 const Backdrop = styled.div`
   /* position: fixed;
   width: 100%;
@@ -21,7 +25,7 @@ const ModalDiv = styled.div`
   top: 50%;
   left: 50%;
   padding: 40px;
-  background-color: rgba(51, 37, 37, 0.34);
+  background-color: rgba(51, 37, 37, 0.8);
   transform: translateX(-50%) translateY(-50%) translateZ(0);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -34,7 +38,19 @@ const ImageStyle = styled.img`
   display: block;
   margin: 0 auto;
 `;
-
+const Button= styled.button`
+position: absolute;
+color: white;
+top:15px;
+right: 15px;
+background-color: transparent;
+border: none;
+border-radius: 5px;
+&:hover {
+  background-color: #e3e3e3 ;
+  color: red;
+}
+`
 // const CloseBtn = styled.button`
 //   position: absolute;
 //   right: 32px;
@@ -62,4 +78,4 @@ const ImageStyle = styled.img`
 //   }
 // `;
 
-export { Backdrop, ModalDiv, ImageStyle };
+export { Backdrop, ModalDiv, ImageStyle, Text, Button };

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Backdrop, ModalDiv, ImageStyle } from './Modal.styles';
+import {Text, Backdrop, ModalDiv, Button } from './Modal.styles';
 
-export const Modal = ({ close, image }) => {
-  const [loaded, setLoaded] = useState(false);
-
+export const Modal = ({ close, image, data }) => {
   useEffect(() => {
     const handleCloseByEsc = e => {
       if (e.code === 'Escape') {
@@ -15,31 +13,21 @@ export const Modal = ({ close, image }) => {
       window.removeEventListener('keydown', handleCloseByEsc);
     };
   });
-  const loadedHandler = () => {
-    setLoaded(true);
-  };
+const onClickBackdrop=(evt)=>{
+  if (evt.currentTarget === evt.target) {
+    close();
+  }
+}
+  const { original_title, popularity, release_date } = data;
   return (
-    <Backdrop>
+    <Backdrop onClick={onClickBackdrop}>
       <ModalDiv>
-        <ImageStyle
-          src={`https://image.tmdb.org/t/p/w500${image}`}
-          width="350"
-          alt="Picture"
-          onLoad={loadedHandler}
-        />
-        {!loaded && (
-          <h3
-            style={{
-              fontSize: 50,
-              color: 'white',
-            }}
-          >
-            Loading...
-          </h3>
-        )}
-        <button type="button" onClick={close}>
+        <Text>Title: {original_title}</Text>
+        <Text>Popularity: {popularity}</Text>
+        <Text>Release date: {release_date}</Text>
+        <Button type="button" onClick={close}>
           x
-        </button>
+        </Button>
       </ModalDiv>
     </Backdrop>
   );

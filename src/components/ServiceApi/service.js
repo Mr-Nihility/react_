@@ -4,3 +4,7 @@ const API_KEY = '7a4cd4317772102a9b88ef6a54b71590';
 export const service = page => {
   return axios.get(`/trending/movie/day?api_key=${API_KEY}&page=${page}`);
 };
+
+  export const getMovieDetails=(id)=>{
+    return axios.get(`/movie/${id}?api_key=${API_KEY}`);
+  }

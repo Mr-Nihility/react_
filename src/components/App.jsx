@@ -7,6 +7,7 @@ import { MoviesGallary } from './MoviesGallary/MoviesGallary';
 import { Modal } from './Modal/Modal';
 import { service } from './ServiceApi/service';
 import { Loader } from './Loader/Loader';
+import { getMovieDetails } from './ServiceApi/service';
 
 // import data from '../data/features.json';
 //-------------------------------------------------------///
@@ -14,9 +15,10 @@ import { Loader } from './Loader/Loader';
 const App = () => {
   const [films, setFilms] = useState([]);
 
-  const [image, setImage] = useState('');
+  const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  
   const isFirstLoad = useRef(true);
 
   useEffect(() => {
@@ -48,11 +50,17 @@ const App = () => {
   //     .finally(() => setLoading(false));
   // };
 
-  const handleOpenModal = img => {
-    setImage(img);
+  const handleOpenModal = id => {
+    // setData(id);
+    getMovieDetails(id).then(({data: {original_title, popularity, release_date}})=>{
+      
+      setData({original_title, popularity, release_date})
+    }
+      )
+
   };
   const handleCloseModal = () => {
-    setImage('');
+    setData(null);
   };
 
   const onToggleStatus = filmId => {
@@ -86,7 +94,7 @@ const App = () => {
         <Button textContent="Load More" handlerClick={handlerLoadMore} />
       </>
 
-      {image && <Modal image={image} close={handleCloseModal} />}
+      {data && <Modal close={handleCloseModal} data={data} />}
     </div>
   );
 };
